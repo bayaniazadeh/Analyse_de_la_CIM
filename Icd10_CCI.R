@@ -1,11 +1,12 @@
-#install.packages("writexl")
+#libraries
 library(stats)
 library(MASS)
-library(writexl)
 
 
+# read data
 data <- read.csv("/Users/azadehbayani/Documents/Azadé/UdeM/Master/Projet/Regression/code/CCI10.csv")
 
+#logistic regression model
 full.model <- glm(death ~ Mi+Chf+Pvd+Dementia+Cpd+Rheumd+
                     Mld+Hp+Rend+Canc+Msld+Aids,
                   family = binomial(link = "logit"), data = data)
@@ -30,7 +31,6 @@ print(weighted_coeffs)
 
 # Create a new data frame to store the summary statistics and coefficients
 result_df <- data.frame(
-  #Summary = c("Coefficients", summary(backward.model)),
   Coefficients = coef,
   P_Values = p_values,
   weighted_coeffs = weighted_coeffs
